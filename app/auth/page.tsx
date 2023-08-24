@@ -1,12 +1,24 @@
 "use client"
+import{useEffect,useState} from "react";
 import Image from "next/image";
 import Navbar from "../../components/Navbar";
 import AuthModal from "../../components/Authentication/AuthModal";
 import { authModalState } from "../../atoms/authModalAtom";
 import {useRecoilValue} from "recoil";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../../firebase/firebase";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
   const authModal= useRecoilValue(authModalState);
+  const router=useRouter();
+  const [user,loading,error]=useAuthState(auth);
+  const [pageLoading,setPageLoading]=useState(true);
+  useEffect(() => {
+    if(user) router.push("/");
+   if(!loading && !user) setPageLoading(false);
+  }, [user,router,loading])
+  if(pageLoading) return null;
   return (
     <main>
       <div className="bg-gradient-to-b from-gray-600 to-black h-screen relative">
