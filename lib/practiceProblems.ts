@@ -14,7 +14,7 @@ export const problems: Problem[] = [
 		difficulty: "Easy",
 		category: "Array",
 		order: 1,
-		videoId: "8-k1C6ehKuw",
+		videoId: "Ivyh3V4QolA",
 	},
 	{
 		id: "reverse-linked-list",
