@@ -1,6 +1,7 @@
 "use client"
 import './globals.css'
 import type { Metadata } from 'next'
+import { Toaster } from 'react-hot-toast';
 import {RecoilRoot} from "recoil";
 
 
@@ -16,10 +17,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-
       <RecoilRoot>
-      <body >{children}</body>
-
+<body >
+    
+      {children}
+      <Toaster  position='top-right'/>
+      </body>
       </RecoilRoot>
     </html>
   )

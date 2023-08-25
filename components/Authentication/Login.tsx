@@ -4,6 +4,7 @@ import { authModalState } from "../../atoms/authModalAtom";
 import { auth } from "../../firebase/firebase";
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { useRouter } from "next/navigation";
+import  toast  from "react-hot-toast";
 
 type LoginProps = {};
 
@@ -28,7 +29,7 @@ password: ""})
   };
   const handleLogin= async (e: React.FormEvent<HTMLFormElement>) =>{
     e.preventDefault();
-    if (!inputs.email || !inputs.password ) return alert("Please fill all fields");
+    if (!inputs.email || !inputs.password ) return toast.error("Please fill all fields");
     try{
       const newUser=await signInWithEmailAndPassword(inputs.email, inputs.password);
       if(!newUser) return;
@@ -40,7 +41,7 @@ password: ""})
     }
   }
   useEffect(()=>{  //this is for error which occurs after submitting like wrong password
-    if(error) alert(error.message);
+    if(error) toast.error(error.message);
   },[error]);
   console.log(user,"user");
   return (
