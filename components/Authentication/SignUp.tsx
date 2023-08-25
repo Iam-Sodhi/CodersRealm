@@ -123,7 +123,7 @@ const SignUp: React.FC<SignUpProps> = () => {
       </button>
       <div className="text-sm font-medium text-gray-300">
         Already have an account?{" "}
-        <a href="#" className="text-blue-700 hover:underline">
+        <a href="#" className="text-blue-700 hover:underline" onClick={() => handleClick("login")}>
           Login
         </a>
       </div>

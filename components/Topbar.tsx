@@ -11,19 +11,22 @@ import { useSetRecoilState } from 'recoil';
 import { authModalState } from '../atoms/authModalAtom';
 
 type TopbarProps = {
-    
+    problemPage?:boolean,
 };
 
-const Topbar:React.FC<TopbarProps> = () => {
+const Topbar:React.FC<TopbarProps> = ({problemPage}) => {
     const [user]=useAuthState(auth);
     const setAuthModalState=  useSetRecoilState(authModalState);
 
     return <nav className='relative flex h-[50px] w-full shrink-0 items-center px-5 bg-dark-layer-1 text-dark-gray-7'>
-    <div className={`flex w-full items-center justify-between `}>
+    <div className={`flex w-full items-center justify-between ${!problemPage?"max-w-[1200px] mx-auto":"" }`}>
         <Link href='/' className='h-[22px] flex-1'>
             <Image src='/logo-full.png' alt='Logo' height={100} width={100} />
         </Link>
 
+         {problemPage&& (
+            
+         
             <div className='flex items-center gap-4 flex-1 justify-center'>
                 <div
                     className='flex items-center justify-center rounded bg-dark-fill-3 hover:bg-dark-fill-2 h-8 w-8 cursor-pointer'
@@ -45,7 +48,7 @@ const Topbar:React.FC<TopbarProps> = () => {
                     <FaChevronRight />
                 </div>
             </div>
-
+)}
         <div className='flex items-center space-x-4 flex-1 justify-end'>
             <div>
                 <a
