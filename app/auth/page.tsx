@@ -9,7 +9,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase/firebase";
 import { useRouter } from "next/navigation";
 
-export default function Home() {
+export default function AuthPage() {
   const authModal= useRecoilValue(authModalState);
   const router=useRouter();
   const [user,loading,error]=useAuthState(auth);
