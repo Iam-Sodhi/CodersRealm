@@ -2,16 +2,31 @@
 import { useState } from "react"
 import ProblemTable from "../components/ProblemTable"
 import Topbar from "../components/Topbar"
+import { doc, setDoc } from "firebase/firestore"; 
+import { db } from "../firebase/firebase";
 export default function Home() {
-	const [inputs,setInputs]=useState({
-		id:'', title:'',difficulty:'',
-		category:'',videoId:'',link:'',
-		order:0,likes:0, dislikes:0,
-	})
+	// const [inputs,setInputs]=useState({
+	// 	id:'', title:'',difficulty:'',
+	// 	category:'',videoId:'',link:'',
+	// 	order:0,likes:0, dislikes:0,
+	// })
 
-	const handleInputChange=(e:React.ChangeEvent<HTMLInputElement>)=>{
-
-	}
+	// const handleInputChange=(e:React.ChangeEvent<HTMLInputElement>)=>{
+    //   setInputs({
+	// 	...inputs,
+	// 	[e.target.name]: e.target.value,
+	//   })
+	// }
+	// const handleSubmit=async(e:React.FormEvent<HTMLFormElement>)=>{
+	// 	e.preventDefault();
+	// 	//convert inputs.order to integer as input will be string by default
+	// 	const newProblem={
+	// 		...inputs,
+	// 		order:Number(inputs.order),
+	// 	}
+	// 	await setDoc(doc(db,"problems",inputs.id),newProblem);
+	// 	alert("saved to db");
+	// }
   return (
     <main className="bg-dark-layer-2 min-h-screen" >
       <Topbar />
@@ -51,8 +66,8 @@ export default function Home() {
 				</div>
 
 
-		{/* temp form	 */}
-		<form className="p-6 flex flex-col max-w-sm gap-3">
+		{/* temp form	
+		<form className="p-6 flex flex-col max-w-sm gap-3" onSubmit={handleSubmit}>
 			<input onChange={handleInputChange} type="text" placeholder="problem id" name="id" />
 			<input onChange={handleInputChange} type="text" placeholder="title" name="title" />
 			<input onChange={handleInputChange} type="text" placeholder="difficulty" name="difficulty" />
@@ -60,8 +75,9 @@ export default function Home() {
 			<input onChange={handleInputChange} type="text" placeholder="order" name="order" />
 			<input onChange={handleInputChange} type="text" placeholder="videoId?" name="videoId" />
 			<input onChange={handleInputChange} type="text" placeholder="link?" name="link" />
-		</form>
-		
+			<button className="bg-white ">Save to DB</button>
+		</form> */}
+		 
     </main>
   )
 }
