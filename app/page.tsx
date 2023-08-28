@@ -4,6 +4,7 @@ import ProblemTable from "../components/ProblemTable"
 import Topbar from "../components/Topbar"
 import { doc, setDoc } from "firebase/firestore"; 
 import { db } from "../firebase/firebase";
+import LoadingSkeleton from "../components/CodeEditor/Skeletons/LoadingSkeleton";
 export default function Home() {
 	// const [inputs,setInputs]=useState({
 	// 	id:'', title:'',difficulty:'',
@@ -27,6 +28,8 @@ export default function Home() {
 	// 	await setDoc(doc(db,"problems",inputs.id),newProblem);
 	// 	alert("saved to db");
 	// }
+
+	const [loading,setLoading]=useState(true);
   return (
     <main className="bg-dark-layer-2 min-h-screen" >
       <Topbar />
@@ -40,7 +43,15 @@ export default function Home() {
 						<div className='max-w-[1200px] mx-auto sm:w-7/12 w-full animate-pulse'>
 						
 						</div>
+					{loading &&(
+						 	<div className='max-w-[1200px] mx-auto sm:w-7/12 w-full animate-pulse'>
+							 {[...Array(10)].map((_, idx) => (
+								 <LoadingSkeleton key={idx} />
+							 ))}
+						 </div>
+					)}	
 					<table className='text-sm text-left text-gray-500 dark:text-gray-400 sm:w-7/12 w-full max-w-[1200px] mx-auto'>
+					{!loading && (
 							<thead className='text-xs text-gray-700 uppercase dark:text-gray-400 border-b '>
 								<tr>
 									<th scope='col' className='px-1 py-3 w-0 font-medium'>
@@ -61,7 +72,9 @@ export default function Home() {
 									</th>
 								</tr>
 							</thead>
-              <ProblemTable />
+							
+							)}
+              <ProblemTable setLoading={setLoading} />
 					</table>
 				</div>
 
@@ -81,3 +94,4 @@ export default function Home() {
     </main>
   )
 }
+

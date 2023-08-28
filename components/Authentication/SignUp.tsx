@@ -1,10 +1,11 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useSetRecoilState } from "recoil";
 import { authModalState } from "../../atoms/authModalAtom";
-import { auth } from "../../firebase/firebase";
+import { auth, db } from "../../firebase/firebase";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { useRouter } from "next/navigation";
-import toast from "react-hot-toast"
+import toast from "react-hot-toast";
+import { doc, setDoc } from "firebase/firestore";
 type SignUpProps = {};
 
 const SignUp: React.FC<SignUpProps> = () => {
@@ -28,25 +29,39 @@ const SignUp: React.FC<SignUpProps> = () => {
   };
   const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!inputs.email || !inputs.password || !inputs.displayName) return toast.error("Please fill all fields");
+    if (!inputs.email || !inputs.password || !inputs.displayName)
+      return toast.error("Please fill all fields");
+      let toastId;
     try {
+       toastId = toast.loading("Creating your account");
       const newUser = await createUserWithEmailAndPassword(
         inputs.email,
         inputs.password
       );
       if (!newUser) return;
-      router.push("/");
 
+      const userData = {
+        uid: newUser.user.uid,
+        email: newUser.user.email,
+        displayName: newUser.user.displayName,
+        createdAt: Date.now(),
+        updatedAt: Date.now(),
+        likeProblems: [],
+        dislikedProblems: [],
+        solvedProblems: [],
+        starredProblems: [],
+      };
+      await setDoc(doc(db, "users", newUser.user.uid), userData);
+      router.push("/");
     } catch (error: any) {
-      alert(error.message);
+      toast.error(error.message);
+    } finally {
+      toast.dismiss(toastId);
     }
   };
   useEffect(() => {
-    if(error) toast.error(error.message);
-  
-  }, [error])
-  
-
+    if (error) toast.error(error.message);
+  }, [error]);
 
   return (
     <form className="space-y-6 px-6 py-4" onSubmit={handleRegister}>
@@ -111,7 +126,7 @@ const SignUp: React.FC<SignUpProps> = () => {
         className="w-full text-white focus:ring-blue-300 font-medium rounded-lg
             text-sm px-5 py-2.5 text-center bg-brand-orange hover:bg-brand-orange-s"
       >
-       {loading?"Registering...": "Register"}
+        {loading ? "Registering..." : "Register"}
       </button>
       <button className="flex w-full justify-end">
         <a
@@ -123,7 +138,11 @@ const SignUp: React.FC<SignUpProps> = () => {
       </button>
       <div className="text-sm font-medium text-gray-300">
         Already have an account?{" "}
-        <a href="#" className="text-blue-700 hover:underline" onClick={() => handleClick("login")}>
+        <a
+          href="#"
+          className="text-blue-700 hover:underline"
+          onClick={() => handleClick("login")}
+        >
           Login
         </a>
       </div>

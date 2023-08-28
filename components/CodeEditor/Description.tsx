@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth, firestore } from "../../firebase/firebase";
+import { auth, db, firestore } from "../../firebase/firebase";
 import { BsCheck2Circle } from "react-icons/bs";
 import {
   AiFillDislike,
@@ -20,6 +20,8 @@ import {
 } from "firebase/firestore";
 import { toast } from "react-hot-toast";
 import Image from "next/image";
+import RectangleSkeleton from "./Skeletons/RectangleSkeleton";
+import CircleSkeleton from "./Skeletons/CircleSkeleton";
 type DescriptionProps = {
   problem: Problem;
   _solved: boolean;
@@ -266,11 +268,11 @@ const Description: React.FC<DescriptionProps> = ({ problem, _solved }) => {
 
             {loading && (
               <div className="mt-3 flex space-x-2">
-                {/* <RectangleSkeleton />
+                 <RectangleSkeleton />
 								<CircleSkeleton />
 								<RectangleSkeleton />
 								<RectangleSkeleton />
-								<CircleSkeleton /> */}
+								<CircleSkeleton /> 
               </div>
             )}
 
@@ -336,7 +338,7 @@ function useGetCurrentProblem(problemId: string) {
     // Get problem from DB
     const getCurrentProblem = async () => {
       setLoading(true);
-      const docRef = doc(firestore, "problems", problemId);
+      const docRef = doc(db, "problems", problemId);
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
         const problem = docSnap.data();
