@@ -7,7 +7,7 @@ import { validParentheses } from "./valid-paranthesis";
 
 
 interface ProblemMap {
-	[key: string]: Problem;
+	[id: string]: Problem;
 }
 
 export const problems: ProblemMap = {

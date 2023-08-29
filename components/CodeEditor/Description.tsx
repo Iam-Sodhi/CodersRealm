@@ -36,8 +36,8 @@ const Description: React.FC<DescriptionProps> = ({ problem, _solved }) => {
   const [updating, setUpdating] = useState(false);
 
   const returnUserDataAndProblemData = async (transaction: any) => {
-    const userRef = doc(firestore, "users", user!.uid);
-    const problemRef = doc(firestore, "problems", problem.id);
+    const userRef = doc(db, "users", user!.uid);
+    const problemRef = doc(db, "problems", problem.id);
     const userDoc = await transaction.get(userRef);
     const problemDoc = await transaction.get(problemRef);
     return { userDoc, problemDoc, userRef, problemRef };
@@ -48,9 +48,11 @@ const Description: React.FC<DescriptionProps> = ({ problem, _solved }) => {
       toast.error("You must be logged in to like a problem");
       return;
     }
-    if (updating) return;
+    if (updating) return; // to avoid instant click when it's still handling the curr click
     setUpdating(true);
-    await runTransaction(firestore, async (transaction) => {
+
+    //using transaction  of firebasse for a set read & write
+    await runTransaction(db, async (transaction) => {
       const { problemDoc, userDoc, problemRef, userRef } =
         await returnUserDataAndProblemData(transaction);
 
@@ -111,8 +113,9 @@ const Description: React.FC<DescriptionProps> = ({ problem, _solved }) => {
       return;
     }
     if (updating) return;
+
     setUpdating(true);
-    await runTransaction(firestore, async (transaction) => {
+    await runTransaction(db, async (transaction) => {
       const { problemDoc, userDoc, problemRef, userRef } =
         await returnUserDataAndProblemData(transaction);
       if (userDoc.exists() && problemDoc.exists()) {
@@ -170,8 +173,9 @@ const Description: React.FC<DescriptionProps> = ({ problem, _solved }) => {
       return;
     }
     if (updating) return;
-    setUpdating(true);
 
+    setUpdating(true);
+     
     if (!starred) {
       const userRef = doc(firestore, "users", user.uid);
       await updateDoc(userRef, {
@@ -371,7 +375,7 @@ function useGetUsersDataOnProblem(problemId: string) {
 
   useEffect(() => {
     const getUsersDataOnProblem = async () => {
-      const userRef = doc(firestore, "users", user!.uid);
+      const userRef = doc(db, "users", user!.uid);
       const userSnap = await getDoc(userRef);
       if (userSnap.exists()) {
         const data = userSnap.data();
