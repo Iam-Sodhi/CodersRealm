@@ -2,8 +2,6 @@
 import { useState } from "react"
 import ProblemTable from "../components/ProblemTable"
 import Topbar from "../components/Topbar"
-import { doc, setDoc } from "firebase/firestore"; 
-import { db } from "../firebase/firebase";
 import LoadingSkeleton from "../components/CodeEditor/Skeletons/LoadingSkeleton";
 export default function Home() {
 	// const [inputs,setInputs]=useState({
@@ -32,7 +30,7 @@ export default function Home() {
 	const [loading,setLoading]=useState(true);
   return (
     <main className="bg-dark-layer-2 min-h-screen" >
-      <Topbar />
+      <Topbar  />
       <h1
 					className='text-2xl text-center text-gray-700 dark:text-gray-400 font-medium
 					uppercase mt-10 mb-5'

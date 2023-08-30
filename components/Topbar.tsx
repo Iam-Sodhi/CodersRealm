@@ -5,7 +5,6 @@ import React from 'react';
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { BsList } from "react-icons/bs";
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth } from '../firebase/firebase';
 import Logout from './Buttons/Logout';
 import { useSetRecoilState } from 'recoil';
 import { authModalState } from '../atoms/authModalAtom';
@@ -13,10 +12,11 @@ import Timer from './Timer';
 import { Problem } from '../lib/Problems/types/Problem';
 import { problems } from '../lib/Problems/problems';
 import { useRouter } from 'next/navigation';
+import { auth } from '../firebase/firebase';
 
 type TopbarProps = {
     problemPage?:boolean,
-    problem:Problem
+    problem?:Problem
 };
 
 const Topbar:React.FC<TopbarProps> = ({problemPage,problem}) => {
@@ -24,6 +24,7 @@ const Topbar:React.FC<TopbarProps> = ({problemPage,problem}) => {
     const router=useRouter();
     const setAuthModalState=  useSetRecoilState(authModalState);
     const handlerProblemChange=(isForward:boolean)=>{
+        if(problem){
         const {order}=problem;
         const direction= isForward? 1:-1;
         const nextproblemOrder=order+direction;
@@ -39,7 +40,7 @@ const Topbar:React.FC<TopbarProps> = ({problemPage,problem}) => {
         else{
             router.push(`/problems/${nextProblemKey}`);
         }
-    } 
+    }  }
 
     return <nav className='relative flex h-[50px] w-full shrink-0 items-center px-5 bg-dark-layer-1 text-dark-gray-7'>
     <div className={`flex w-full items-center justify-between ${!problemPage?"max-w-[1200px] mx-auto":"" }`}>
