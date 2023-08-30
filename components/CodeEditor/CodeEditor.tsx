@@ -17,7 +17,7 @@ const CodeEditor:React.FC<CodeEditorProps> = ({problem}) => {
     return  <Split className='split' minSize={0}>
         <Description  problem={problem} _solved={solved}/>
         <div>
-        <Playground problem={problem} setSuccess={setSuccess} />
+        <Playground problem={problem} setSuccess={setSuccess} setSolved={setSolved} />
        {success && <Confetti gravity={0.3}
          tweenDuration={4000}
          width={width-1} height={height-1}
