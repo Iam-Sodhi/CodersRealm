@@ -1,7 +1,6 @@
 import './globals.css'
 import type { Metadata } from 'next'
-import { Toaster } from 'react-hot-toast';
-import {RecoilRoot} from "recoil";
+import Helper from '../components/helper';
 
 
 export const metadata: Metadata = {
@@ -16,13 +15,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <RecoilRoot>
-   <body >
-    
+     <Helper>
       {children}
-      <Toaster  position='top-right'/>
-      </body>
-      </RecoilRoot>
+     </Helper>
     </html>
   )
 }
