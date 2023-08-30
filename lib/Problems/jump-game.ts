@@ -36,7 +36,13 @@ export const jumpGame: Problem = {
     Return <code>true</code> if you can reach the last index, or <code>false</code> otherwise.
     </p>
   `,
-
+   testCases:  [
+	[2, 3, 1, 1, 4],
+	[3, 2, 1, 0, 4],
+	[2, 0, 0],
+	[2, 5, 0, 0],
+],
+ answers: [true, false, true, true],
 	examples: [
 		{
 			id: 0,
