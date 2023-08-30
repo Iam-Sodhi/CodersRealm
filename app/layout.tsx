@@ -17,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <RecoilRoot>
-<body >
+   <body >
     
       {children}
       <Toaster  position='top-right'/>
