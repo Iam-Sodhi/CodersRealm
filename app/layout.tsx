@@ -1,6 +1,6 @@
+import Helper from '../components/Helper'
 import './globals.css'
 import type { Metadata } from 'next'
-import Helper from '../components/helper';
 
 
 export const metadata: Metadata = {
