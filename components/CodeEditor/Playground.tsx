@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import PreferenceNav from "./PreferenceNav";
 import Split from "react-split";
 import CodeMirror from "@uiw/react-codemirror";
+import { javascript } from "@codemirror/lang-javascript";
 import { cpp } from "@codemirror/lang-cpp";
 import { vscodeDark } from "@uiw/codemirror-theme-vscode";
 import EditorFooter from "./EditorFooter";
@@ -26,7 +27,7 @@ const Playground: React.FC<PlaygroundProps> = ({ problem }) => {
           <CodeMirror
             value={problem.starterCode}
             theme={vscodeDark}
-            extensions={[cpp()]}
+            extensions={[javascript()]}
             style={{ fontSize: 16 }}
           />
         </div>
