@@ -1,34 +1,21 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Deployment Link:
+https://coders-realm.vercel.app/
 
-## Getting Started
+# About:
+It is a leetcode clone named "CodersRealm".
+## TechStack used:
+Next.js, Firebase, Tailwind CSS, Typescript etc.
+<img width="1113" alt="Screenshot 2023-10-06 065332" src="https://github.com/Iam-Sodhi/CodersRealm/assets/129111379/05ff0cdb-bfb8-410a-836c-a1031cc3821f">
 
-First, run the development server:
+<img width="1120" alt="Screenshot 2023-10-06 063759" src="https://github.com/Iam-Sodhi/CodersRealm/assets/129111379/80aaaa49-e371-497d-ac1f-33423217e418">
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+<img width="1113" alt="Screenshot 2023-10-06 065349" src="https://github.com/Iam-Sodhi/CodersRealm/assets/129111379/cf504440-3bed-4f81-bb4c-1dee54dbcb91">
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+<img width="1120" alt="Screenshot 2023-10-06 065404" src="https://github.com/Iam-Sodhi/CodersRealm/assets/129111379/4a062ec1-02f5-4e72-af53-6a8c4a06cffb">
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+<img width="727" alt="Screenshot 2023-10-06 065517" src="https://github.com/Iam-Sodhi/CodersRealm/assets/129111379/e62deb65-afc5-4d8b-bba1-ccaed82b3688">
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+<img width="1113" alt="Screenshot 2023-10-06 065541" src="https://github.com/Iam-Sodhi/CodersRealm/assets/129111379/1e1b1280-812a-4441-9975-3c9648741b05">
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
